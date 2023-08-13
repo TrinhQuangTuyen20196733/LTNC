@@ -22,12 +22,35 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Cursor;
 import View.UserList;
+import javax.swing.JPasswordField;
 
 public class SignInPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField userNameText;
-	private JTextField PasswordText;
+	private JPasswordField passwordtxt;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SignInPage frame = new SignInPage();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+
 
 	public SignInPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,32 +82,30 @@ public class SignInPage extends JFrame {
 		contentPane.add(userNameText);
 		userNameText.setColumns(10);
 		
-		PasswordText = new JTextField();
-		PasswordText.setColumns(10);
-		PasswordText.setBounds(235, 259, 273, 39);
-		contentPane.add(PasswordText);
-		
 		JButton btnNewButton = new JButton("Submit");
 		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnNewButton.setBounds(496, 424, 109, 39);
+		passwordtxt = new JPasswordField();
+		passwordtxt.setBounds(235, 261, 273, 39);
+		contentPane.add(passwordtxt);
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String userName = userNameText.getText();
-				String password = PasswordText.getText();
+				String password = new String(passwordtxt.getPassword());
 		        LoginReq loginReq = new LoginReq(userName, password);
 				
 				AuthController authController = new AuthController();
 				var ms = authController.signIn(loginReq);
 				if (ms.code==200) {
 					 JOptionPane.showMessageDialog(null, "Login successfull!", "Success", JOptionPane.DEFAULT_OPTION);
-					if (ms.message=="Admin") {
+					if (ms.message.equals("Admin")) {
 						AdminHomePage adminHomePage = new AdminHomePage();
 						adminHomePage.setVisible(true);
-					} else if (ms.message=="User"){
+					} else if (ms.message.equals("User")){
 						FlightList flightList = new FlightList();
 						flightList.setVisible(true);
 					}
@@ -112,6 +133,8 @@ public class SignInPage extends JFrame {
         });
 		
 		contentPane.add(RegisterText);
+		
+		
 		
 	}
 }

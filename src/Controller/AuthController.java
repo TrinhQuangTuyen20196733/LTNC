@@ -18,7 +18,10 @@ public class AuthController {
     	ms.code = 404;
     	ms.message = "Login faild! Try again!";
      }
-     ms.message = user.getRole();
+     else {
+
+         ms.message = user.getRole();
+     }
 	return ms;
  }
  public MessageResponse create(UserEntity userEntity) {
