@@ -184,6 +184,7 @@ public class UpdateUserPage extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int id = user.getId();
 				String firstName = firstNametxt.getText();
 				String lastName = lastNametxt.getText();
 				String email = emailtxt.getText();
@@ -197,9 +198,10 @@ public class UpdateUserPage extends JFrame {
 				String role = (String)roletxt.getSelectedItem();
 				
 	       UserEntity userEntity = new UserEntity(firstName,lastName,address,gender,age,phoneNumber,cmnd,nationality,email,password,role);
+	       userEntity.setId(id);
 				
 				AuthController authController = new AuthController();
-				var ms = authController.create(userEntity);
+				var ms = authController.update(userEntity);
 				
 				if (ms.code==200) {
 					 JOptionPane.showMessageDialog(null, " Successfull!", "Success", JOptionPane.DEFAULT_OPTION);

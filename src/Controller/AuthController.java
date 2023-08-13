@@ -48,5 +48,15 @@ public MessageResponse deletebyId(int id) {
 	return ms;
 	
 }
+ public MessageResponse update(UserEntity userEntity) {
+	 try {
+		authRepository.updateEntity(userEntity);
+	} catch (Exception e) {
+		// TODO: handle exception
+		ms.code = 500;
+		ms.message=e.getMessage();
+	}
+	 return ms;
+ }
  
 }

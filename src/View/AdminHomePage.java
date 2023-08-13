@@ -93,6 +93,14 @@ public class AdminHomePage extends JFrame {
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnLogout.setBounds(705, 28, 149, 49);
 		contentPane.add(btnLogout);
+       btnUser.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			UserList airlineList = new UserList();
+			airlineList.setVisible(true);
+			}
+		});
 		btnAirline.addActionListener(new ActionListener() {
 			
 			@Override

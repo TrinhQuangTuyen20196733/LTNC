@@ -131,6 +131,11 @@ public class UserList extends JFrame {
 		btnUpdate.setBounds(453, 533, 85, 33);
 		contentPane.add(btnUpdate);
 		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBack.setBounds(50, 38, 85, 33);
+		contentPane.add(btnBack);
+		
 		
 		showData(userList);
 		userTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -175,8 +180,31 @@ public class UserList extends JFrame {
 				
 			}
 		});
+        btnBack.addActionListener(new ActionListener() {
+			
+ 			@Override
+ 			public void actionPerformed(ActionEvent e) {
+ 			
+ 				
+ 			ServiceList adminHomePage = new ServiceList();
+ 			adminHomePage.setVisible(true);
+ 			}
+ 		});
+    btnAdd.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				
+				var user = userList.get(selectedRow);
+				SignupPage updateUserPage = new SignupPage();
+				updateUserPage.setVisible(true);
+				
+			}
+		});
 		
 	}
+	
 	void showData(List<UserEntity> users) {
 		
 		

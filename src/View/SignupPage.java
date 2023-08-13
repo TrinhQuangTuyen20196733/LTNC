@@ -167,7 +167,7 @@ public class SignupPage extends JFrame {
 		contentPane.add(roletxt);
 		
 		JButton registerButton = new JButton("Register");
-		registerButton.setBackground(Color.BLUE);
+		registerButton.setBackground(Color.LIGHT_GRAY);
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		registerButton.setBounds(550, 602, 103, 42);
 		
@@ -204,5 +204,21 @@ public class SignupPage extends JFrame {
 			}
 		});
 		contentPane.add(registerButton);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnBack.setBackground(Color.LIGHT_GRAY);
+		btnBack.setBounds(23, 10, 103, 42);
+		contentPane.add(btnBack);
+		 btnBack.addActionListener(new ActionListener() {
+				
+	 			@Override
+	 			public void actionPerformed(ActionEvent e) {
+	 			
+	 				
+	 			AdminHomePage adminHomePage = new AdminHomePage();
+	 			adminHomePage.setVisible(true);
+	 			}
+	 		});
 	}
 }
