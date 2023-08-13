@@ -85,7 +85,7 @@ public class FlightSavePage extends JFrame {
 			return plane1.getCode();
 		}).toArray();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 895, 731);
+		setBounds(100, 100, 895, 818);
 		contentPane = new JPanel();
 		contentPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -111,7 +111,7 @@ public class FlightSavePage extends JFrame {
 		JButton btnSave = new JButton("Save");
 		btnSave.setBackground(Color.LIGHT_GRAY);
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnSave.setBounds(605, 625, 103, 42);
+		btnSave.setBounds(625, 729, 103, 42);
 		
 		
 		contentPane.add(btnSave);
@@ -189,6 +189,16 @@ public class FlightSavePage extends JFrame {
 		btnBack.setBounds(33, 33, 103, 42);
 		contentPane.add(btnBack);
 		
+		JLabel emailText_1_1_1_1_1 = new JLabel("Cost");
+		emailText_1_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		emailText_1_1_1_1_1.setBounds(52, 651, 127, 28);
+		contentPane.add(emailText_1_1_1_1_1);
+		
+		JSpinner costtxt = new JSpinner();
+		costtxt.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		costtxt.setBounds(223, 651, 103, 28);
+		contentPane.add(costtxt);
+		
 		 btnBack.addActionListener(new ActionListener() {
 				
 	 			@Override
@@ -222,8 +232,9 @@ public class FlightSavePage extends JFrame {
 			
 			String boardGate = boardingGatetxt.getText();
 			String planeCode = (String)planetxt.getSelectedItem();
+		    int cost = (int)costtxt.getValue();
 			
-			FlightDTO flightdto = new FlightDTO(id,code,departureLocation,destination,departureTime,landingTime,boardGate,planeCode);
+			FlightDTO flightdto = new FlightDTO(id,code,departureLocation,destination,departureTime,landingTime,boardGate,planeCode,cost);
 			
 			
 			

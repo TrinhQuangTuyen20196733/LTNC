@@ -11,5 +11,6 @@ public interface IMyRepository<T> {
  List<T> getAll();
  List<T> getByQuery(String query);
  void updateEntity(T entity);
+ void executeQuery(String query);
  
 }

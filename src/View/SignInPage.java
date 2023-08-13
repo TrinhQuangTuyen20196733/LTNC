@@ -106,8 +106,8 @@ public class SignInPage extends JFrame {
 						AdminHomePage adminHomePage = new AdminHomePage();
 						adminHomePage.setVisible(true);
 					} else if (ms.message.equals("User")){
-						FlightList flightList = new FlightList();
-						flightList.setVisible(true);
+						UserHomepage userHomepage = new UserHomepage();
+						userHomepage.setVisible(true);
 					}
 					
 				} else {
@@ -126,7 +126,6 @@ public class SignInPage extends JFrame {
 		RegisterText.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "Label clicked!");
                 SignupPage signUp = new SignupPage();
 				 signUp.setVisible(true);
             }

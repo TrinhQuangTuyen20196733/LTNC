@@ -172,12 +172,22 @@ public class UserHomepage extends JFrame {
 	 			public void actionPerformed(ActionEvent e) {
 	 			
 	 				
-	 			AdminHomePage adminHomePage = new AdminHomePage();
+	 			SignInPage adminHomePage = new SignInPage();
 	 			adminHomePage.setVisible(true);
 	 			}
 	 		});
 		
-		
+		 btnBook.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				
+					
+					var flight = flightList.get(selectedRow);
+				UserBookingPage flightSavePage = new UserBookingPage(flight);
+				flightSavePage.setVisible(true);
+				}
+			});
 		
 		showData(flightList);
 		flightTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -187,6 +197,8 @@ public class UserHomepage extends JFrame {
 			public void valueChanged(ListSelectionEvent e) {
 				
                        selectedRow = flightTable.getSelectedRow();
+                   	
+       				
                   }
 			
           });

@@ -347,10 +347,17 @@ public class MyRepository<T> implements IMyRepository<T> {
 						rsField.set(result, rsValue);
 					}
 					else if (fieldType == LocalDateTime.class) {
-						var rsValue = rs.getDate(fieldName);
-						var rsField = result.getClass().getDeclaredField(fieldName);
-						rsField.setAccessible(true);
-						rsField.set(result, rsValue);
+						var rsTimestamp = rs.getTimestamp(fieldName);
+					    if (rsTimestamp != null) {
+					        LocalDateTime localDateTime = rsTimestamp.toLocalDateTime();
+					        var rsField = result.getClass().getDeclaredField(fieldName);
+					        rsField.setAccessible(true);
+					        rsField.set(result, localDateTime);
+					    } else {
+					        var rsField = result.getClass().getDeclaredField(fieldName);
+					        rsField.setAccessible(true);
+					        rsField.set(result, null); // Set the field to null if the database value is null
+					    }
 					}
 				}
 				connection.commit();
@@ -797,6 +804,50 @@ public class MyRepository<T> implements IMyRepository<T> {
 				return Id;
 				
 				
+	}
+
+	@Override
+	public void executeQuery(String query) {
+		// TODO Auto-generated method stub
+					
+
+					Connection connection = null;
+					Savepoint savepoint = null;
+					int count = 1;
+					// Execute Query
+					
+					try {
+						connection = DBConnection.Getconnection();
+						PreparedStatement pstmt = connection.prepareStatement(query);
+						connection.setAutoCommit(false);
+						savepoint = connection.setSavepoint("Savepoint1");
+						
+						pstmt.executeUpdate();
+
+						connection.commit();
+						connection.setAutoCommit(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+						try {
+							connection.rollback(savepoint);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} finally {
+						if (connection != null) {
+
+							// Đóng kết nối
+							try {
+								connection.close();
+							} catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+						}
+					}
+					
 	}
 
 	

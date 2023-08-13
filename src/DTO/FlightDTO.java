@@ -12,6 +12,7 @@ public class FlightDTO {
 	private LocalDateTime landingTime;
 	private String boardingGate;
 	private String planeCode;
+	private int cost;
 	public int getId() {
 		return id;
 	}
@@ -60,8 +61,14 @@ public class FlightDTO {
 	public void setPlaneCode(String planeCode) {
 		this.planeCode = planeCode;
 	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	public FlightDTO(int id, String code, String departureLocation, String destination, LocalDateTime departureTime,
-			LocalDateTime landingTime, String boardingGate, String planeCode) {
+			LocalDateTime landingTime, String boardingGate, String planeCode, int cost) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -71,9 +78,10 @@ public class FlightDTO {
 		this.landingTime = landingTime;
 		this.boardingGate = boardingGate;
 		this.planeCode = planeCode;
+		this.cost = cost;
 	}
 	public FlightDTO(String code, String departureLocation, String destination, LocalDateTime departureTime,
-			LocalDateTime landingTime, String boardingGate, String planeCode) {
+			LocalDateTime landingTime, String boardingGate, String planeCode, int cost) {
 		super();
 		this.code = code;
 		this.departureLocation = departureLocation;
@@ -82,10 +90,12 @@ public class FlightDTO {
 		this.landingTime = landingTime;
 		this.boardingGate = boardingGate;
 		this.planeCode = planeCode;
+		this.cost = cost;
 	}
 	public FlightDTO() {
 		super();
 	}
+	
 	
 	
 }

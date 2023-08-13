@@ -186,7 +186,7 @@ public class UserList extends JFrame {
  			public void actionPerformed(ActionEvent e) {
  			
  				
- 			ServiceList adminHomePage = new ServiceList();
+ 			AdminHomePage adminHomePage = new AdminHomePage();
  			adminHomePage.setVisible(true);
  			}
  		});

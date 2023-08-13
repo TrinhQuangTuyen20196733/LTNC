@@ -13,5 +13,7 @@ public class TableMapper {
            TableMap.put("Seat", "seat");
            TableMap.put("Flight", "flight");
            TableMap.put("Service", "service");
+           TableMap.put("Ticket", "ticket");
+           TableMap.put("Receipt", "receipt");
 }
        }

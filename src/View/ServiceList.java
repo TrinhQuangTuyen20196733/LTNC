@@ -71,7 +71,7 @@ public class ServiceList extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Danh sách hãng hàng không ");
+		JLabel lblNewLabel = new JLabel("Danh sách dịch vụ trên chuyến bay");
 		lblNewLabel.setForeground(Color.BLUE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(341, 28, 316, 33);

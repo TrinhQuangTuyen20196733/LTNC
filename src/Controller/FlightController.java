@@ -3,6 +3,7 @@ package Controller;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import Config.StatusConstant;
 import DTO.FlightDTO;
 import DTO.FlightFilterParam;
 import DTO.MessageResponse;
@@ -11,6 +12,7 @@ import DTO.PlaneRes;
 import Entity.Flight;
 import Entity.Plane;
 import Entity.Seat;
+import Entity.Ticket;
 import Mapper.Mapper;
 import Mapper.MapperImpl.FlightMapper;
 import Mapper.MapperImpl.PlaneMapper;
@@ -20,13 +22,25 @@ import Repository.MyRepository;
 public class FlightController {
 	 private IMyRepository<Flight> flightRepository =  new MyRepository<>().getInstance(Flight.class);
 	 private IMyRepository<Plane> planeRepository =  new MyRepository<>().getInstance(Plane.class);
+	 private IMyRepository<Ticket> ticketRepository =  new MyRepository<>().getInstance(Ticket.class);
+	 private IMyRepository<Seat> seatRepository =  new MyRepository<>().getInstance(Seat.class);
 	 private Mapper<Flight,FlightDTO> flightMapper = new FlightMapper();
 	 public MessageResponse ms = new MessageResponse();
 	 public MessageResponse create(FlightDTO flightDTO) {
 		
 		 try {
 			 Flight flight = flightMapper.toEntity(flightDTO);
-			 flightRepository.insertEntity(flight);
+			int flightId= flightRepository.insertEntityAndReturnId(flight);
+			 Ticket ticket = new Ticket();
+			 ticket.setFlightId(flightId);
+			 ticket.setStatus(StatusConstant.EMPTY);
+			 ticket.setCost(flightDTO.getCost());
+			 List<Seat> seats = seatRepository.getByQuery("SELECT * FROM seat WHERE planeId="+flight.getPlaneId());
+			 for (Seat seat :seats) {
+				 ticket.setSeatId(seat.getId());
+				 ticketRepository.insertEntity(ticket);
+			 }
+			 
 		 }
 		 catch (Exception e) {
 			ms.code=500;

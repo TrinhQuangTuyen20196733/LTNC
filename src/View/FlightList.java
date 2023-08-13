@@ -249,6 +249,17 @@ public class FlightList extends JFrame {
 			flightSavePage.setVisible(true);
 			}
 		});
+        btnBook.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			
+				
+				var flight = flightList.get(selectedRow);
+			UserBookingPage flightSavePage = new UserBookingPage(flight);
+			flightSavePage.setVisible(true);
+			}
+		});
         btnAdd.addActionListener(new ActionListener() {
 			
      			@Override

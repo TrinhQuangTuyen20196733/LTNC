@@ -24,7 +24,8 @@ public class PlaneController {
 			 int planeId = planeRepository.insertEntityAndReturnId(plane);
 			 for (int i=0;i<planeDTO.getRow();i++) {
 				 for (int j=0;j<planeDTO.getColumn();j++) {
-					 Seat seat = new Seat(i,j,planeId);
+					 String code = "R-"+i+" "+"C-"+j;
+					 Seat seat = new Seat(code,i,j,planeId);
 					 seatRepository.insertEntity(seat);
 				 }
 			 }
